@@ -27,12 +27,37 @@ var operation = "";
 function operate() {
 
 }
+
+// Create number buttons
+
 let grid = document.querySelector("#grid")
-for (let i=1; i < 10; i++) {
+for (let i=0; i < 10; i++) {
   const cell = document.createElement("button");
-  cell.style.boxSizing = "border-box";
-  cell.style.width = 140 + "px";
-  cell.style.height = 140 + "px";
   cell.textContent = `${i}`;
   grid.appendChild(cell);
 }
+
+// Create rest of the buttons
+const addButton = document.createElement("button");
+addButton.textContent = `+`;
+grid.appendChild(addButton);
+
+const subtractButton = document.createElement("button");
+subtractButton.textContent = `-`;
+grid.appendChild(subtractButton);
+
+const multiplyButton = document.createElement("button");
+multiplyButton.textContent = `×`;
+grid.appendChild(multiplyButton);
+
+const divideButton = document.createElement("button");
+divideButton.textContent = `÷`;
+grid.appendChild(divideButton);
+
+const clearButton = document.createElement("button");
+clearButton.textContent = `CLEAR`;
+grid.appendChild(clearButton);
+
+const equalButton = document.createElement("button");
+equalButton.textContent = `=`;
+grid.appendChild(equalButton);

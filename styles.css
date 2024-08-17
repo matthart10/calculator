@@ -19,15 +19,20 @@
 #grid {
     display: flex; 
     flex-wrap: wrap; 
-    border-style: solid; 
+    align-items: stretch;
+    flex-grow: 1;
 }
 button, input[type="submit"], input[type="reset"] {
 	background: none;
 	color: inherit;
 	border: black;
-    border-width: 2px;
+    border-width: 4px;
+    border-style: solid;
 	padding: 0;
 	font: inherit;
 	cursor: pointer;
 	outline: inherit;
+    box-sizing: border-box;
+    flex-basis: 25%
+
 }
