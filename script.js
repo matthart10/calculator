@@ -67,12 +67,23 @@ const equalButton = document.createElement("button");
 equalButton.textContent = `=`;
 grid.appendChild(equalButton);
 
-// Event Listener that shows if a button is pressed then put it up on the display
+// Event Listener that shows if a number button is pressed then put it up on the display
 
 const theDisplay = document.querySelector("#display")
+
 const allNumButtons = document.querySelectorAll(".numberButton")
 allNumButtons.forEach((button) => {
   button.addEventListener("click", () => {
     theDisplay.textContent += `${button.textContent}`
+  })
+})
+
+// Event Listener that once an operation is pressed, then store the text content inside a variable and store operation so we know what operation to do once equals happens
+const allOperatorButtons = document.querySelectorAll(".operatorButton");
+allOperatorButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    const firstNumber = theDisplay.textContent;
+    theDisplay.textContent = `${button.textContent}`
+    const theOperation = theDisplay.textContent;
   })
 })
