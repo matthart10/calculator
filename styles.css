@@ -36,3 +36,8 @@ button, input[type="submit"], input[type="reset"] {
     flex-basis: 25%
 
 }
+
+button:hover {
+    background-color: #008CBA; /* change to your desired color */
+    color: white; /* change to your desired color */
+  }

@@ -61,3 +61,13 @@ grid.appendChild(clearButton);
 const equalButton = document.createElement("button");
 equalButton.textContent = `=`;
 grid.appendChild(equalButton);
+
+// Event Listener that shows if a button is pressed then put it up on the display
+
+const theDisplay = document.querySelector("#display")
+const allButtons = document.querySelectorAll("button")
+allButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    theDisplay.textContent = `${button.textContent}`
+  })
+})
