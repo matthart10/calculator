@@ -33,24 +33,29 @@ function operate() {
 let grid = document.querySelector("#grid")
 for (let i=0; i < 10; i++) {
   const cell = document.createElement("button");
+  cell.classList.add("numberButton");
   cell.textContent = `${i}`;
   grid.appendChild(cell);
 }
 
 // Create rest of the buttons
 const addButton = document.createElement("button");
+addButton.classList.add("operatorButton");
 addButton.textContent = `+`;
 grid.appendChild(addButton);
 
 const subtractButton = document.createElement("button");
+subtractButton.classList.add("operatorButton");
 subtractButton.textContent = `-`;
 grid.appendChild(subtractButton);
 
 const multiplyButton = document.createElement("button");
+multiplyButton.classList.add("operatorButton");
 multiplyButton.textContent = `×`;
 grid.appendChild(multiplyButton);
 
 const divideButton = document.createElement("button");
+divideButton.classList.add("operatorButton");
 divideButton.textContent = `÷`;
 grid.appendChild(divideButton);
 
@@ -65,9 +70,9 @@ grid.appendChild(equalButton);
 // Event Listener that shows if a button is pressed then put it up on the display
 
 const theDisplay = document.querySelector("#display")
-const allButtons = document.querySelectorAll("button")
-allButtons.forEach((button) => {
+const allNumButtons = document.querySelectorAll(".numberButton")
+allNumButtons.forEach((button) => {
   button.addEventListener("click", () => {
-    theDisplay.textContent = `${button.textContent}`
+    theDisplay.textContent += `${button.textContent}`
   })
 })
