@@ -110,3 +110,12 @@ theEqualButton.addEventListener("click", () => {
   secondNum = parseInt(`${secondNum}`, 10);
   theDisplay.textContent = `${operate(firstNum, secondNum, operation)}`;
 })
+
+// Event Listener that once clear is pressed, then wipe out all numbers and display is blank;
+const theClearButton = document.querySelector(".clearButton");
+theClearButton.addEventListener("click", () => {
+  theDisplay.textContent = "";
+  firstNum = "";
+  secondNum = "";
+  operation = "";
+})
