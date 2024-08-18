@@ -18,15 +18,24 @@ const divide = function(a, b) {
 
 // Variables that define a single calculator operation
 
-var firstNum = 0;
-var secondNum = 0;
+var firstNum = "";
+var secondNum = "";
 var operation = "";
 
 // Operate function that takes in operator and two numbers and calls above function
 
-function operate() {
-
+function operate(a, b, operation) {
+  if (operation === "+") {
+    return(add(a, b))
+  } else if (operation === "-") {
+    return (subtract(a, b))
+  } else if (operation === "×") {
+    return (multiply(a, b))
+  } else if (operation === "÷") {
+    return (divide(a, b))
+  }
 }
+
 
 // Create number buttons
 
@@ -38,7 +47,7 @@ for (let i=0; i < 10; i++) {
   grid.appendChild(cell);
 }
 
-// Create rest of the buttons
+// Create operator buttons
 const addButton = document.createElement("button");
 addButton.classList.add("operatorButton");
 addButton.textContent = `+`;
@@ -59,11 +68,15 @@ divideButton.classList.add("operatorButton");
 divideButton.textContent = `÷`;
 grid.appendChild(divideButton);
 
+// Create clear button and equals button
+
 const clearButton = document.createElement("button");
+clearButton.classList.add("clearButton");
 clearButton.textContent = `CLEAR`;
 grid.appendChild(clearButton);
 
 const equalButton = document.createElement("button");
+equalButton.classList.add("equalButton")
 equalButton.textContent = `=`;
 grid.appendChild(equalButton);
 
@@ -82,8 +95,18 @@ allNumButtons.forEach((button) => {
 const allOperatorButtons = document.querySelectorAll(".operatorButton");
 allOperatorButtons.forEach((button) => {
   button.addEventListener("click", () => {
-    const firstNumber = theDisplay.textContent;
-    theDisplay.textContent = `${button.textContent}`
-    const theOperation = theDisplay.textContent;
-  })
+    firstNum = theDisplay.textContent;
+    // theDisplay.textContent = `${button.textContent}`
+    operation = `${button.textContent}`
+    theDisplay.textContent = "";
+  });
+})
+
+// Event Listener that once an equal is pressed, then the store the text content inside the second number and evaluate the two numbers
+const theEqualButton = document.querySelector(".equalButton");
+theEqualButton.addEventListener("click", () => {
+  secondNum = theDisplay.textContent;
+  firstNum = parseInt(`${firstNum}`, 10);
+  secondNum = parseInt(`${secondNum}`, 10);
+  theDisplay.textContent = `${operate(firstNum, secondNum, operation)}`;
 })
