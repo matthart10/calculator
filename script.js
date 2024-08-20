@@ -21,6 +21,7 @@ const divide = function(a, b) {
 var firstNum = "";
 var secondNum = "";
 var operation = "";
+var clearOnNextNum = false;
 
 // Operate function that takes in operator and two numbers and calls above function
 
@@ -87,6 +88,10 @@ const theDisplay = document.querySelector("#display")
 const allNumButtons = document.querySelectorAll(".numberButton")
 allNumButtons.forEach((button) => {
   button.addEventListener("click", () => {
+    if (clearOnNextNum) {
+      theDisplay.textContent = "";
+      clearOnNextNum = false;
+    }
     theDisplay.textContent += `${button.textContent}`
   })
 })
@@ -95,12 +100,13 @@ allNumButtons.forEach((button) => {
 const allOperatorButtons = document.querySelectorAll(".operatorButton");
 allOperatorButtons.forEach((button) => {
   button.addEventListener("click", () => {
+    clearOnNextNum = false;
     firstNum = theDisplay.textContent;
     // theDisplay.textContent = `${button.textContent}`
     operation = `${button.textContent}`
     theDisplay.textContent = "";
   });
-})
+});
 
 // Event Listener that once an equal is pressed, then the store the text content inside the second number and evaluate the two numbers
 const theEqualButton = document.querySelector(".equalButton");
@@ -109,6 +115,7 @@ theEqualButton.addEventListener("click", () => {
   firstNum = parseInt(`${firstNum}`, 10);
   secondNum = parseInt(`${secondNum}`, 10);
   theDisplay.textContent = `${operate(firstNum, secondNum, operation)}`;
+  clearOnNextNum = true;
 })
 
 // Event Listener that once clear is pressed, then wipe out all numbers and display is blank;
