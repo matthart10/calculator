@@ -16,13 +16,24 @@
     flex-grow: 1;
 }
 
+#layout {
+    display: flex;
+    align-items: stretch;
+    flex-grow: 1;
+}
+
 #grid {
     display: flex; 
     flex-wrap: wrap; 
     align-items: stretch;
     flex-grow: 1;
+    flex-basis: 75%
 }
-
+#operatorGrid {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 25%
+}
 
 button, input[type="submit"], input[type="reset"] {
 	background: none;
@@ -35,12 +46,13 @@ button, input[type="submit"], input[type="reset"] {
 	cursor: pointer;
 	outline: inherit;
     box-sizing: border-box;
-    flex-basis: 25%
+    flex-basis: 33.3%
+}
 
-}
 .zeroButton {
-    flex-basis: 50%
+    flex-basis: 66.7%
 }
+
 button:hover {
     background-color: #008CBA; /* change to your desired color */
     color: white; /* change to your desired color */

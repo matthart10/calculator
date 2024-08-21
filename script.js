@@ -79,33 +79,34 @@ decimalButton.classList.add("decimalButton");
 decimalButton.textContent = ".";
 grid.appendChild(decimalButton);
 
+let operatorGrid = document.querySelector("#operatorGrid")
 // Create operator buttons
 const addButton = document.createElement("button");
 addButton.classList.add("operatorButton");
 addButton.textContent = `+`;
-grid.appendChild(addButton);
+operatorGrid.appendChild(addButton);
 
 const subtractButton = document.createElement("button");
 subtractButton.classList.add("operatorButton");
 subtractButton.textContent = `-`;
-grid.appendChild(subtractButton);
+operatorGrid.appendChild(subtractButton);
 
 const multiplyButton = document.createElement("button");
 multiplyButton.classList.add("operatorButton");
 multiplyButton.textContent = `×`;
-grid.appendChild(multiplyButton);
+operatorGrid.appendChild(multiplyButton);
 
 const divideButton = document.createElement("button");
 divideButton.classList.add("operatorButton");
 divideButton.textContent = `÷`;
-grid.appendChild(divideButton);
+operatorGrid.appendChild(divideButton);
 
 // Create equals button
 
 const equalButton = document.createElement("button");
 equalButton.classList.add("equalButton")
 equalButton.textContent = `=`;
-grid.appendChild(equalButton);
+operatorGrid.appendChild(equalButton);
 
 // Event Listener that shows if a number button is pressed then put it up on the display
 
