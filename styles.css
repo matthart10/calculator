@@ -22,6 +22,8 @@
     align-items: stretch;
     flex-grow: 1;
 }
+
+
 button, input[type="submit"], input[type="reset"] {
 	background: none;
 	color: inherit;
@@ -36,7 +38,9 @@ button, input[type="submit"], input[type="reset"] {
     flex-basis: 25%
 
 }
-
+.zeroButton {
+    flex-basis: 50%
+}
 button:hover {
     background-color: #008CBA; /* change to your desired color */
     color: white; /* change to your desired color */
