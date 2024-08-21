@@ -92,6 +92,14 @@ allNumButtons.forEach((button) => {
       theDisplay.textContent = "";
       clearOnNextNum = false;
     }
+    if (theDisplay.textContent === "0") {
+      theDisplay.textContent = "";
+    }
+    if (equalPressed && !operatorPressedOnce) {
+      firstNum = "";
+      secondNum = "";
+      operation = "";
+    }
     theDisplay.textContent += `${button.textContent}`
   })
 })
@@ -100,6 +108,8 @@ var operatorPressedOnce = false;
 const allOperatorButtons = document.querySelectorAll(".operatorButton");
 allOperatorButtons.forEach((button) => {
   button.addEventListener("click", () => {
+      clearOnNextNum = true;
+      // operatorPressedOnce should have returned to false when equals was pressed
       if (operatorPressedOnce) {
         secondNum = theDisplay.textContent;
         firstNum = parseInt(`${firstNum}`, 10);
@@ -111,7 +121,7 @@ allOperatorButtons.forEach((button) => {
       operation = `${button.textContent}`
   });
 });
-
+var equalPressed = false;
 // Event Listener that once an equal is pressed, then the store the text content inside the second number and evaluate the two numbers
 const theEqualButton = document.querySelector(".equalButton");
 theEqualButton.addEventListener("click", () => {
@@ -122,6 +132,7 @@ theEqualButton.addEventListener("click", () => {
     secondNum = parseInt(`${secondNum}`, 10);
     theDisplay.textContent = `${operate(firstNum, secondNum, operation)}`;
     clearOnNextNum = true;
+    equalPressed = true;
   }
 })
 
