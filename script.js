@@ -100,29 +100,33 @@ var operatorPressedOnce = false;
 const allOperatorButtons = document.querySelectorAll(".operatorButton");
 allOperatorButtons.forEach((button) => {
   button.addEventListener("click", () => {
-    clearOnNextNum = true;
-    if (operatorPressedOnce) {
-      secondNum = theDisplay.textContent;
-      firstNum = parseInt(`${firstNum}`, 10);
-      secondNum = parseInt(`${secondNum}`, 10);
-      theDisplay.textContent = `${operate(firstNum, secondNum, operation)}`;
+    if (!clearOnNextNum) {
+      clearOnNextNum = true;
+      if (operatorPressedOnce) {
+        secondNum = theDisplay.textContent;
+        firstNum = parseInt(`${firstNum}`, 10);
+        secondNum = parseInt(`${secondNum}`, 10);
+        theDisplay.textContent = `${operate(firstNum, secondNum, operation)}`;
+      }
+      operatorPressedOnce = true;
+      firstNum = theDisplay.textContent;
+      // theDisplay.textContent = `${button.textContent}`
+      operation = `${button.textContent}`
     }
-    operatorPressedOnce = true;
-    firstNum = theDisplay.textContent;
-    // theDisplay.textContent = `${button.textContent}`
-    operation = `${button.textContent}`
   });
 });
 
 // Event Listener that once an equal is pressed, then the store the text content inside the second number and evaluate the two numbers
 const theEqualButton = document.querySelector(".equalButton");
 theEqualButton.addEventListener("click", () => {
-  operatorPressedOnce = false;
-  secondNum = theDisplay.textContent;
-  firstNum = parseInt(`${firstNum}`, 10);
-  secondNum = parseInt(`${secondNum}`, 10);
-  theDisplay.textContent = `${operate(firstNum, secondNum, operation)}`;
-  clearOnNextNum = true;
+  if (firstNum != "") {
+    operatorPressedOnce = false;
+    secondNum = theDisplay.textContent;
+    firstNum = parseInt(`${firstNum}`, 10);
+    secondNum = parseInt(`${secondNum}`, 10);
+    theDisplay.textContent = `${operate(firstNum, secondNum, operation)}`;
+    clearOnNextNum = true;
+  }
 })
 
 // Event Listener that once clear is pressed, then wipe out all numbers and display is blank;
