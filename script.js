@@ -13,7 +13,10 @@ const multiply = function(a, b) {
   };
 
 const divide = function(a, b) {
-    return a / b;
+  if (b === 0) {
+    return "Error!";
+  }
+  return a / b;
 }
 
 // Variables that define a single calculator operation
