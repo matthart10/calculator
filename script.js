@@ -40,11 +40,7 @@ function operate(a, b, operation) {
   }
 }
 let grid = document.querySelector("#grid")
-// Create clear button
-const clearButton = document.createElement("button");
-clearButton.classList.add("clearButton");
-clearButton.textContent = "AC";
-grid.appendChild(clearButton)
+
 
 // Create plus/minus button
 const signButton = document.createElement("button");
@@ -58,13 +54,25 @@ percentButton.classList.add("percentButton");
 percentButton.textContent = "%";
 grid.appendChild(percentButton);
 
+// Create clear button
+const clearButton = document.createElement("button");
+clearButton.classList.add("clearButton");
+clearButton.textContent = "AC";
+grid.appendChild(clearButton)
+
 // Create number buttons
-for (let i=1; i < 10; i++) {
+for (let i=9; i > 0; i--) {
   const cell = document.createElement("button");
   cell.classList.add("numberButton");
   cell.textContent = `${i}`;
   grid.appendChild(cell);
 }
+
+// Add decimal button
+const decimalButton = document.createElement("button");
+decimalButton.classList.add("decimalButton");
+decimalButton.textContent = ".";
+grid.appendChild(decimalButton);
 
 // Create zero button
 const zeroButton = document.createElement("button");
@@ -73,13 +81,9 @@ zeroButton.classList.add("zeroButton");
 zeroButton.textContent = "0";
 grid.appendChild(zeroButton);
 
-// Add decimal button
-const decimalButton = document.createElement("button");
-decimalButton.classList.add("decimalButton");
-decimalButton.textContent = ".";
-grid.appendChild(decimalButton);
 
-let operatorGrid = document.querySelector("#operatorGrid")
+
+ operatorGrid = document.querySelector("#operatorGrid")
 // Create operator buttons
 const addButton = document.createElement("button");
 addButton.classList.add("operatorButton");

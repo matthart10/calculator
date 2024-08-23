@@ -20,6 +20,7 @@
     display: flex;
     align-items: stretch;
     flex-grow: 1;
+    margin: 20px;
 }
 
 #grid {
@@ -27,6 +28,7 @@
     flex-wrap: wrap; 
     align-items: stretch;
     flex-grow: 1;
+    flex-direction: row-reverse;
     flex-basis: 75%
 }
 #operatorGrid {
@@ -46,11 +48,12 @@ button, input[type="submit"], input[type="reset"] {
 	cursor: pointer;
 	outline: inherit;
     box-sizing: border-box;
-    flex-basis: 33.3%
+    flex-grow: 1;
+    flex-basis: 33.333%
 }
 
 .zeroButton {
-    flex-basis: 66.7%
+    flex-basis: 66.66%
 }
 
 button:hover {
