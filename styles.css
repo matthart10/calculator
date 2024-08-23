@@ -37,6 +37,10 @@
     flex-basis: 25%
 }
 
+.operatorButton {
+    background-color: yellowgreen;
+}
+
 button, input[type="submit"], input[type="reset"] {
 	background: none;
 	color: inherit;
