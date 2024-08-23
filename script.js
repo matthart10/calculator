@@ -143,8 +143,8 @@ allOperatorButtons.forEach((button) => {
       // operatorPressedOnce should have returned to false when equals was pressed
       if (operatorPressedOnce) {
         secondNum = theDisplay.textContent;
-        firstNum = parseInt(`${firstNum}`, 10);
-        secondNum = parseInt(`${secondNum}`, 10);
+        firstNum = Number(`${firstNum}`);
+        secondNum = Number(`${secondNum}`);
         theDisplay.textContent = `${operate(firstNum, secondNum, operation)}`;
       }
       operatorPressedOnce = true;
@@ -159,8 +159,8 @@ theEqualButton.addEventListener("click", () => {
   if (firstNum != "" && operation != "") {
     operatorPressedOnce = false;
     secondNum = theDisplay.textContent;
-    firstNum = parseInt(`${firstNum}`, 10);
-    secondNum = parseInt(`${secondNum}`, 10);
+    firstNum = Number(`${firstNum}`);
+    secondNum = Number(`${secondNum}`);
     theDisplay.textContent = `${operate(firstNum, secondNum, operation)}`;
     clearOnNextNum = true;
     equalPressed = true;
@@ -185,4 +185,16 @@ theBackspaceButton.addEventListener("click", () => {
   }
 })
 
-// Event Listener 
+// Event Listener that once sign button is pressed, multiply textcontent by negative 1
+const theSignButton = document.querySelector(".signButton");
+theSignButton.addEventListener("click", () => {
+  theDisplay.textContent = Number(`${theDisplay.textContent}`) * -1
+});
+
+// Event Listener that once decimal button is pressed, add a decimal
+const theDecimalButton = document.querySelector(".decimalButton");
+theDecimalButton.addEventListener("click", () => {
+  if (Number(`${theDisplay.textContent}`) % 1 === 0) {
+    theDisplay.textContent += ".";
+  }
+})
