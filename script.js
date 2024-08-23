@@ -48,11 +48,11 @@ signButton.classList.add("signButton");
 signButton.textContent = "+/-";
 grid.appendChild(signButton);
 
-// Create percentage button
-const percentButton = document.createElement("button");
-percentButton.classList.add("percentButton");
-percentButton.textContent = "%";
-grid.appendChild(percentButton);
+// Create backspace button
+const backspaceButton = document.createElement("button");
+backspaceButton.classList.add("backspaceButton");
+backspaceButton.textContent = "⌫";
+grid.appendChild(backspaceButton);
 
 // Create clear button
 const clearButton = document.createElement("button");
@@ -175,3 +175,14 @@ theClearButton.addEventListener("click", () => {
   secondNum = "";
   operation = "";
 })
+
+// Event Listener that once backspace button is pressed, execute backspace function
+const theBackspaceButton = document.querySelector(".backspaceButton");
+theBackspaceButton.addEventListener("click", () => {
+  var displayString = `${theDisplay.textContent}`;
+  if (displayString != "") {
+    theDisplay.textContent = displayString.slice(0, -1)
+  }
+})
+
+// Event Listener 
