@@ -16,7 +16,7 @@ const divide = function(a, b) {
   if (b === 0) {
     return "Error!";
   }
-  return a / b;
+  return (a / b).toFixed(2);
 }
 
 // Variables that define a single calculator operation
