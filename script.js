@@ -119,18 +119,7 @@ const theDisplay = document.querySelector("#display")
 const allNumButtons = document.querySelectorAll(".numberButton")
 allNumButtons.forEach((button) => {
   button.addEventListener("click", () => {
-    if (clearOnNextNum) {
-      theDisplay.textContent = "";
-      clearOnNextNum = false;
-    }
-    if (theDisplay.textContent === "0") {
-      theDisplay.textContent = "";
-    }
-    if (equalPressed && !operatorPressedOnce) {
-      firstNum = "";
-      secondNum = "";
-      operation = "";
-    }
+    numberButtonsAndKeyboard()
     theDisplay.textContent += `${button.textContent}`
   })
 })
@@ -158,16 +147,8 @@ var equalPressed = false;
 // Event Listener that once an equal is pressed, then the store the text content inside the second number and evaluate the two numbers
 const theEqualButton = document.querySelector(".equalButton");
 theEqualButton.addEventListener("click", () => {
-  if (firstNum != "" && operation != "") {
-    operatorPressedOnce = false;
-    secondNum = theDisplay.textContent;
-    firstNum = Number(`${firstNum}`);
-    secondNum = Number(`${secondNum}`);
-    theDisplay.textContent = `${operate(firstNum, secondNum, operation)}`;
-    clearOnNextNum = true;
-    equalPressed = true;
-  }
-})
+  equalButtonAndKeyboard();
+});
 
 // Event Listener that once clear is pressed, then wipe out all numbers and display is blank;
 const theClearButton = document.querySelector(".clearButton");
@@ -181,10 +162,7 @@ theClearButton.addEventListener("click", () => {
 // Event Listener that once backspace button is pressed, execute backspace function
 const theBackspaceButton = document.querySelector(".backspaceButton");
 theBackspaceButton.addEventListener("click", () => {
-  var displayString = `${theDisplay.textContent}`;
-  if (displayString != "") {
-    theDisplay.textContent = displayString.slice(0, -1);
-  };
+  backspaceButtonAndKeyboard();
 });
 
 // Event Listener that once sign button is pressed, multiply textcontent by negative 1
@@ -196,9 +174,7 @@ theSignButton.addEventListener("click", () => {
 // Event Listener that once decimal button is pressed, add a decimal
 const theDecimalButton = document.querySelector(".decimalButton");
 theDecimalButton.addEventListener("click", () => {
-  if (Number(`${theDisplay.textContent}`) % 1 === 0) {
-    theDisplay.textContent += ".";
-  };
+  decimalButtonAndKeyboard();
 });
 
 // Keyboard Support for numbers
@@ -236,17 +212,31 @@ function numberButtonsAndKeyboard() {
     firstNum = "";
     secondNum = "";
     operation = "";
+    equalPressed = false;
   }
 }
 function backspaceButtonAndKeyboard() {
   var displayString = `${theDisplay.textContent}`;
-  if (displayString != "") {
+  if (equalPressed) {
+    firstNum = "";
+    secondNum = "";
+    operation = "";
+    theDisplay.textContent = "";
+    equalPressed = false;
+  } else {
     theDisplay.textContent = displayString.slice(0, -1);
   }
 }
 
 function decimalButtonAndKeyboard() {
-  if (Number(`${theDisplay.textContent}`) % 1 === 0) {
+  if (equalPressed) {
+    firstNum = "";
+    secondNum = "";
+    operation = "";
+    theDisplay.textContent = ".";
+    clearOnNextNum = false;
+    equalPressed = false;
+  } else if (Number(`${theDisplay.textContent}`) % 1 === 0) {
     theDisplay.textContent += ".";
   };
 }
