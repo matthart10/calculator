@@ -202,3 +202,20 @@ theDecimalButton.addEventListener("click", () => {
 });
 
 // Keyboard Support
+document.addEventListener("keypress", (e) => {
+  if (clearOnNextNum) {
+    theDisplay.textContent = "";
+    clearOnNextNum = false;
+  }
+  if (theDisplay.textContent === "0") {
+    theDisplay.textContent = "";
+  }
+  if (equalPressed && !operatorPressedOnce) {
+    firstNum = "";
+    secondNum = "";
+    operation = "";
+  }
+  if (isFinite(e.key)) {
+    theDisplay.textContent += `${e.key}`;
+  };
+});
