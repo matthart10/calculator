@@ -139,6 +139,7 @@ var operatorPressedOnce = false;
 const allOperatorButtons = document.querySelectorAll(".operatorButton");
 allOperatorButtons.forEach((button) => {
   button.addEventListener("click", () => {
+    if (theDisplay.textContent != "") {
       clearOnNextNum = true;
       // operatorPressedOnce should have returned to false when equals was pressed
       if (operatorPressedOnce) {
@@ -150,6 +151,7 @@ allOperatorButtons.forEach((button) => {
       operatorPressedOnce = true;
       firstNum = theDisplay.textContent;
       operation = `${button.textContent}`
+    }
   });
 });
 var equalPressed = false;
@@ -174,21 +176,21 @@ theClearButton.addEventListener("click", () => {
   firstNum = "";
   secondNum = "";
   operation = "";
-})
+});
 
 // Event Listener that once backspace button is pressed, execute backspace function
 const theBackspaceButton = document.querySelector(".backspaceButton");
 theBackspaceButton.addEventListener("click", () => {
   var displayString = `${theDisplay.textContent}`;
   if (displayString != "") {
-    theDisplay.textContent = displayString.slice(0, -1)
-  }
-})
+    theDisplay.textContent = displayString.slice(0, -1);
+  };
+});
 
 // Event Listener that once sign button is pressed, multiply textcontent by negative 1
 const theSignButton = document.querySelector(".signButton");
 theSignButton.addEventListener("click", () => {
-  theDisplay.textContent = Number(`${theDisplay.textContent}`) * -1
+  theDisplay.textContent = Number(`${theDisplay.textContent}`) * -1;
 });
 
 // Event Listener that once decimal button is pressed, add a decimal
@@ -196,5 +198,7 @@ const theDecimalButton = document.querySelector(".decimalButton");
 theDecimalButton.addEventListener("click", () => {
   if (Number(`${theDisplay.textContent}`) % 1 === 0) {
     theDisplay.textContent += ".";
-  }
-})
+  };
+});
+
+// Keyboard Support
