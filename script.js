@@ -201,8 +201,30 @@ theDecimalButton.addEventListener("click", () => {
   };
 });
 
-// Keyboard Support
+// Keyboard Support for numbers
 document.addEventListener("keypress", (e) => {
+  if (isFinite(e.key)) {
+    numberButtonsAndKeyboard();
+    theDisplay.textContent += `${e.key}`;
+  };
+  if (e.key === ".") {
+    decimalButtonAndKeyboard();
+  }
+  if (e.key === "Enter") {
+    equalButtonAndKeyboard();
+  }
+});
+
+// Keyboard Support for backspace
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Backspace") {
+    backspaceButtonAndKeyboard();
+  }
+})
+
+
+// Functions
+function numberButtonsAndKeyboard() {
   if (clearOnNextNum) {
     theDisplay.textContent = "";
     clearOnNextNum = false;
@@ -215,7 +237,28 @@ document.addEventListener("keypress", (e) => {
     secondNum = "";
     operation = "";
   }
-  if (isFinite(e.key)) {
-    theDisplay.textContent += `${e.key}`;
+}
+function backspaceButtonAndKeyboard() {
+  var displayString = `${theDisplay.textContent}`;
+  if (displayString != "") {
+    theDisplay.textContent = displayString.slice(0, -1);
+  }
+}
+
+function decimalButtonAndKeyboard() {
+  if (Number(`${theDisplay.textContent}`) % 1 === 0) {
+    theDisplay.textContent += ".";
   };
-});
+}
+
+function equalButtonAndKeyboard() {
+  if (firstNum != "" && operation != "") {
+    operatorPressedOnce = false;
+    secondNum = theDisplay.textContent;
+    firstNum = Number(`${firstNum}`);
+    secondNum = Number(`${secondNum}`);
+    theDisplay.textContent = `${operate(firstNum, secondNum, operation)}`;
+    clearOnNextNum = true;
+    equalPressed = true;
+  }
+}
