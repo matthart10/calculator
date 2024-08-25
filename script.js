@@ -153,7 +153,7 @@ theEqualButton.addEventListener("click", () => {
 // Event Listener that once clear is pressed, then wipe out all numbers and display is blank;
 const theClearButton = document.querySelector(".clearButton");
 theClearButton.addEventListener("click", () => {
-  theDisplay.textContent = "";
+  theDisplay.textContent = "0";
   firstNum = "";
   secondNum = "";
   operation = "";
@@ -221,10 +221,13 @@ function backspaceButtonAndKeyboard() {
     firstNum = "";
     secondNum = "";
     operation = "";
-    theDisplay.textContent = "";
+    theDisplay.textContent = "0";
     equalPressed = false;
   } else {
     theDisplay.textContent = displayString.slice(0, -1);
+    if (theDisplay.textContent === "") {
+      theDisplay.textContent = "0";
+    }
   }
 }
 
