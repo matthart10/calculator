@@ -127,7 +127,7 @@ var operatorPressedOnce = false;
 // Event Listener that once an operation is pressed, then store the text content inside a variable and store operation so we know what operation to do once equals happens
 const allOperatorButtons = document.querySelectorAll(".operatorButton");
 allOperatorButtons.forEach((button) => {
-  button.addEventListener("click", () => {
+  button.addEventListener("click", (event) => {
     if (theDisplay.textContent != "") {
       clearOnNextNum = true;
       // operatorPressedOnce should have returned to false when equals was pressed
@@ -251,4 +251,20 @@ function equalButtonAndKeyboard() {
     clearOnNextNum = true;
     equalPressed = true;
   }
+}
+
+// Event Listener for all operator buttons that if it is actively clicked, then have hover background, if not, then return to yellowgreen background
+const allButtons = document.querySelectorAll("button");
+allButtons.forEach(function (mov) {
+  mov.addEventListener("click", handleClick);
+});
+
+function handleClick(event) {
+  allOperatorButtons.forEach(function (val) {
+    if (val == event.target) {
+      val.classList.add("activeButton");
+    } else {
+      val.classList.remove("activeButton");
+    }
+  });
 }

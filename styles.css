@@ -14,6 +14,9 @@
     background-color: white;
     display: flex;
     flex-grow: 1;
+    font-size: 60px;
+    justify-content: flex-end;
+    overflow: hidden;
 }
 
 #layout {
@@ -38,7 +41,7 @@
 }
 
 .operatorButton {
-    background-color: yellowgreen;
+    background-color: rgb(114, 145, 53);
 }
 
 button, input[type="submit"], input[type="reset"] {
@@ -53,7 +56,8 @@ button, input[type="submit"], input[type="reset"] {
 	outline: inherit;
     box-sizing: border-box;
     flex-grow: 1;
-    flex-basis: 33.333%
+    flex-basis: 33.333%;
+    font-size: 35px;
 }
 
 .zeroButton {
@@ -63,4 +67,8 @@ button, input[type="submit"], input[type="reset"] {
 button:hover {
     background-color: #008CBA; /* change to your desired color */
     color: white; /* change to your desired color */
+  }
+
+  .activeButton {
+    background-color: #008CBA;
   }
