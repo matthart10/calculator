@@ -3,7 +3,7 @@
     max-width: 600px;
     min-width: 600px;
     min-height: 800px;
-    background-color: grey;
+    background-color: rgb(37, 34, 34);
     margin: auto;
     flex-direction: column;
 }
@@ -34,16 +34,27 @@
     flex-direction: row-reverse;
     flex-basis: 75%
 }
+
 #operatorGrid {
     display: flex;
     flex-direction: column;
     flex-basis: 25%
 }
-
-.operatorButton {
-    background-color: rgb(114, 145, 53);
+.numberButton {
+    background-color: rgb(204, 160, 77);
 }
-
+.decimalButton {
+    background-color: rgb(204, 160, 77);
+}
+.operatorButton {
+    background-color: rgb(64, 184, 64);
+}
+.equalButton {
+    background-color: rgb(64, 184, 64);
+}
+.miscButton {
+    background-color: rgb(201, 77, 201);
+}
 button, input[type="submit"], input[type="reset"] {
 	background: none;
 	color: inherit;

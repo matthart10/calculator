@@ -45,18 +45,21 @@ let grid = document.querySelector("#grid")
 // Create plus/minus button
 const signButton = document.createElement("button");
 signButton.classList.add("signButton");
+signButton.classList.add("miscButton");
 signButton.textContent = "+/-";
 grid.appendChild(signButton);
 
 // Create backspace button
 const backspaceButton = document.createElement("button");
 backspaceButton.classList.add("backspaceButton");
+backspaceButton.classList.add("miscButton");
 backspaceButton.textContent = "⌫";
 grid.appendChild(backspaceButton);
 
 // Create clear button
 const clearButton = document.createElement("button");
 clearButton.classList.add("clearButton");
+clearButton.classList.add("miscButton");
 clearButton.textContent = "AC";
 grid.appendChild(clearButton)
 
