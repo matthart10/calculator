@@ -25,6 +25,7 @@ var firstNum = "";
 var secondNum = "";
 var operation = "";
 var clearOnNextNum = false;
+var equalPressed = false;
 
 // Operate function that takes in operator and two numbers and calls above function
 
@@ -134,6 +135,7 @@ allOperatorButtons.forEach((button) => {
     // Ensure that nothing happens if there's nothing in display
     if (theDisplay.textContent != "") {
       clearOnNextNum = true;
+      equalPressed = false;
       // operatorPressedOnce should have returned to false when equals was pressed, but this will trigger if we're doing multi-operative operation
       if (operatorPressedOnce) {
         secondNum = theDisplay.textContent;
@@ -147,7 +149,7 @@ allOperatorButtons.forEach((button) => {
     }
   });
 });
-var equalPressed = false;
+
 // Event Listener that once an equal is pressed, then the store the text content inside the second number and evaluate the two numbers
 const theEqualButton = document.querySelector(".equalButton");
 theEqualButton.addEventListener("click", () => {
@@ -258,14 +260,16 @@ function decimalButtonAndKeyboard() {
 
 function equalButtonAndKeyboard() {
   // As long as we have an operation and a number, we have the display be second number and we execute an operation
-  if (firstNum != "" && operation != "") {
-    operatorPressedOnce = false;
-    secondNum = theDisplay.textContent;
-    firstNum = Number(`${firstNum}`);
-    secondNum = Number(`${secondNum}`);
-    theDisplay.textContent = `${operate(firstNum, secondNum, operation)}`;
-    clearOnNextNum = true;
-    equalPressed = true;
+  if (!equalPressed) {
+    if (firstNum != "" && operation != "") {
+      operatorPressedOnce = false;
+      secondNum = theDisplay.textContent;
+      firstNum = Number(`${firstNum}`);
+      secondNum = Number(`${secondNum}`);
+      theDisplay.textContent = `${operate(firstNum, secondNum, operation)}`;
+      clearOnNextNum = true;
+      equalPressed = true;
+    }
   }
 }
 
