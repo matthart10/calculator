@@ -1,29 +1,46 @@
+#whole {
+    display:flex;
+    height: 100%;
+    position: fixed;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+}
+
 #container {
     display: flex;
-    max-width: 600px;
     min-width: 600px;
     min-height: 800px;
+    border-radius: 10px;
     background-color: rgb(37, 34, 34);
     margin: auto;
     flex-direction: column;
 }
 
 #display {
-    margin: 20px;
+    margin-top: 20px;
+    background-color: lightgray;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 8px;
     max-height: 80px;
-    background-color: white;
     display: flex;
     flex-grow: 1;
     font-size: 60px;
     justify-content: flex-end;
     overflow: hidden;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding: 1px;
 }
 
 #layout {
     display: flex;
     align-items: stretch;
     flex-grow: 1;
-    margin: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
 }
 
 #grid {
@@ -59,7 +76,8 @@ button, input[type="submit"], input[type="reset"] {
 	background: none;
 	color: inherit;
 	border: black;
-    border-width: 4px;
+    border-width: 2px;
+    border-radius: 10px;
     border-style: solid;
 	padding: 0;
 	font: inherit;
@@ -69,6 +87,7 @@ button, input[type="submit"], input[type="reset"] {
     flex-grow: 1;
     flex-basis: 33.333%;
     font-size: 35px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .zeroButton {
