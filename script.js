@@ -130,10 +130,11 @@ var operatorPressedOnce = false;
 // Event Listener that once an operation is pressed, then store the text content inside a variable and store operation so we know what operation to do once equals happens
 const allOperatorButtons = document.querySelectorAll(".operatorButton");
 allOperatorButtons.forEach((button) => {
-  button.addEventListener("click", (event) => {
+  button.addEventListener("click", () => {
+    // Ensure that nothing happens if there's nothing in display
     if (theDisplay.textContent != "") {
       clearOnNextNum = true;
-      // operatorPressedOnce should have returned to false when equals was pressed
+      // operatorPressedOnce should have returned to false when equals was pressed, but this will trigger if we're doing multi-operative operation
       if (operatorPressedOnce) {
         secondNum = theDisplay.textContent;
         firstNum = Number(`${firstNum}`);
@@ -180,7 +181,7 @@ theDecimalButton.addEventListener("click", () => {
   decimalButtonAndKeyboard();
 });
 
-// Keyboard Support for numbers
+// Keyboard Support for numbers, decimal, and enter/equals
 document.addEventListener("keypress", (e) => {
   if (isFinite(e.key)) {
     numberButtonsAndKeyboard();
@@ -203,14 +204,18 @@ document.addEventListener("keydown", (e) => {
 
 
 // Functions
+
 function numberButtonsAndKeyboard() {
+  // clearOnNextNum is set to true after pressing an operator button so new number can be read, also when equals is pressed so new calculator operation can be started
   if (clearOnNextNum) {
     theDisplay.textContent = "";
     clearOnNextNum = false;
   }
+  // Ensure "01" doesn't happen
   if (theDisplay.textContent === "0") {
     theDisplay.textContent = "";
   }
+  // This resets everything since equal was pressed, so new calculator operation will be started
   if (equalPressed && !operatorPressedOnce) {
     firstNum = "";
     secondNum = "";
@@ -218,8 +223,10 @@ function numberButtonsAndKeyboard() {
     equalPressed = false;
   }
 }
+
 function backspaceButtonAndKeyboard() {
   var displayString = `${theDisplay.textContent}`;
+  // Reset everything if equal was pressed, starting a new operation
   if (equalPressed) {
     firstNum = "";
     secondNum = "";
@@ -228,6 +235,7 @@ function backspaceButtonAndKeyboard() {
     equalPressed = false;
   } else {
     theDisplay.textContent = displayString.slice(0, -1);
+    // Once all the numbers in the display are backspaced, return the display to zero
     if (theDisplay.textContent === "") {
       theDisplay.textContent = "0";
     }
@@ -235,11 +243,12 @@ function backspaceButtonAndKeyboard() {
 }
 
 function decimalButtonAndKeyboard() {
+  // Reset everything if equal was pressed, starting a new operation and starting it with a decimal
   if (equalPressed) {
     firstNum = "";
     secondNum = "";
     operation = "";
-    theDisplay.textContent = ".";
+    theDisplay.textContent = "0.";
     clearOnNextNum = false;
     equalPressed = false;
   } else if (Number(`${theDisplay.textContent}`) % 1 === 0) {
@@ -248,6 +257,7 @@ function decimalButtonAndKeyboard() {
 }
 
 function equalButtonAndKeyboard() {
+  // As long as we have an operation and a number, we have the display be second number and we execute an operation
   if (firstNum != "" && operation != "") {
     operatorPressedOnce = false;
     secondNum = theDisplay.textContent;
