@@ -16,7 +16,7 @@ const divide = function(a, b) {
   if (b === 0) {
     return "Error!";
   }
-  return (a / b).toFixed(2);
+  return +(a / b).toFixed(2);
 }
 
 // Variables that define a single calculator operation
@@ -124,7 +124,9 @@ const allNumButtons = document.querySelectorAll(".numberButton")
 allNumButtons.forEach((button) => {
   button.addEventListener("click", () => {
     numberButtonsAndKeyboard()
-    theDisplay.textContent += `${button.textContent}`
+    if (theDisplay.textContent.length < 16) {
+      theDisplay.textContent += `${button.textContent}`;
+    }
   })
 })
 var operatorPressedOnce = false;
@@ -141,7 +143,11 @@ allOperatorButtons.forEach((button) => {
         secondNum = theDisplay.textContent;
         firstNum = Number(`${firstNum}`);
         secondNum = Number(`${secondNum}`);
-        theDisplay.textContent = `${operate(firstNum, secondNum, operation)}`;
+        if (operate(firstNum, secondNum, operation).toString().length < 17) {
+          theDisplay.textContent = `${operate(firstNum, secondNum, operation)}`;
+        } else {
+          theDisplay.textContent = `${(operate(firstNum, secondNum, operation)).toPrecision(2)}`;
+        }
       }
       operatorPressedOnce = true;
       firstNum = theDisplay.textContent;
@@ -187,7 +193,9 @@ theDecimalButton.addEventListener("click", () => {
 document.addEventListener("keypress", (e) => {
   if (isFinite(e.key)) {
     numberButtonsAndKeyboard();
-    theDisplay.textContent += `${e.key}`;
+    if (theDisplay.textContent.length < 16) {
+      theDisplay.textContent += `${e.key}`;
+    }
   };
   if (e.key === ".") {
     decimalButtonAndKeyboard();
@@ -253,7 +261,7 @@ function decimalButtonAndKeyboard() {
     theDisplay.textContent = "0.";
     clearOnNextNum = false;
     equalPressed = false;
-  } else if (Number(`${theDisplay.textContent}`) % 1 === 0) {
+  } else if (Number(`${theDisplay.textContent}`) % 1 === 0 || Number(`${theDisplay.textContent}`) < 0) {
     theDisplay.textContent += ".";
   };
 }
@@ -266,8 +274,12 @@ function equalButtonAndKeyboard() {
       secondNum = theDisplay.textContent;
       firstNum = Number(`${firstNum}`);
       secondNum = Number(`${secondNum}`);
-      theDisplay.textContent = `${operate(firstNum, secondNum, operation)}`;
-      clearOnNextNum = true;
+      if (operate(firstNum, secondNum, operation).toString().length < 17) {
+        theDisplay.textContent = `${operate(firstNum, secondNum, operation)}`;
+      } else {
+        theDisplay.textContent = `${(operate(firstNum, secondNum, operation)).toPrecision(2)}`;
+      }
+        clearOnNextNum = true;
       equalPressed = true;
     }
   }
