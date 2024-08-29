@@ -137,7 +137,7 @@ allOperatorButtons.forEach((button) => {
     // Ensure that nothing happens if there's nothing in display
     if (theDisplay.textContent != "") {
       clearOnNextNum = true;
-      equalPressed = false;
+      // equalPressed = false;
       // operatorPressedOnce should have returned to false when equals was pressed, but this will trigger if we're doing multi-operative operation
       if (operatorPressedOnce) {
         secondNum = theDisplay.textContent;
@@ -243,6 +243,7 @@ function backspaceButtonAndKeyboard() {
     operation = "";
     theDisplay.textContent = "0";
     equalPressed = false;
+    operatorPressedOnce = false;
   } else {
     theDisplay.textContent = displayString.slice(0, -1);
     // Once all the numbers in the display are backspaced, return the display to zero
@@ -261,8 +262,14 @@ function decimalButtonAndKeyboard() {
     theDisplay.textContent = "0.";
     clearOnNextNum = false;
     equalPressed = false;
-  } else if (Number(`${theDisplay.textContent}`) % 1 === 0 || Number(`${theDisplay.textContent}`) < 0) {
-    theDisplay.textContent += ".";
+  };
+  if (clearOnNextNum) {
+    theDisplay.textContent = "0.";
+    clearOnNextNum = false;
+    // Do nothing if there is a decimal in the current display
+  } else if (theDisplay.textContent.indexOf('.') > -1) {
+  } else {
+    theDisplay.textContent += "."
   };
 }
 
@@ -300,3 +307,7 @@ function handleClick(event) {
     }
   });
 }
+
+
+
+
