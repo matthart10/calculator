@@ -146,6 +146,7 @@ allOperatorButtons.forEach((button) => {
         }
       }
       clearOnNextNum = true;
+      equalPressed = false;
       operatorPressedOnce = true;
       firstNum = theDisplay.textContent;
       operation = `${button.textContent}`
@@ -165,6 +166,9 @@ theClearButton.addEventListener("click", () => {
   firstNum = "";
   secondNum = "";
   operation = "";
+  equalPressed = false;
+  clearOnNextNum = true;
+  operatorPressedOnce = false;
 });
 
 // Event Listener that once backspace button is pressed, execute backspace function
@@ -186,27 +190,22 @@ theDecimalButton.addEventListener("click", () => {
 });
 
 // Keyboard Support for numbers, decimal, and enter/equals
-document.addEventListener("keypress", (e) => {
+document.addEventListener("keydown", (e) => {
   if (isFinite(e.key)) {
     numberButtonsAndKeyboard();
     if (theDisplay.textContent.length < 16) {
       theDisplay.textContent += `${e.key}`;
     }
-  };
-  if (e.key === ".") {
+  } else if (e.key === ".") {
     decimalButtonAndKeyboard();
-  }
-  if (e.key === "Enter") {
+  } else if (e.key === "Enter") {
     equalButtonAndKeyboard();
+  } else if (e.key === "Backspace") {
+    backspaceButtonAndKeyboard();
   }
 });
 
-// Keyboard Support for backspace
-document.addEventListener("keydown", (e) => {
-  if (e.key === "Backspace") {
-    backspaceButtonAndKeyboard();
-  }
-})
+
 
 
 // Functions
@@ -262,7 +261,7 @@ function decimalButtonAndKeyboard() {
 
 function equalButtonAndKeyboard() {
   // As long as we have an operation and a number, we have the display be second number and we execute an operation
-  if (firstNum != "" && operation != "") {
+  if (firstNum != "" && operation != "" && !equalPressed) {
       operatorPressedOnce = false;
       secondNum = theDisplay.textContent;
       firstNum = Number(`${firstNum}`);
@@ -272,8 +271,8 @@ function equalButtonAndKeyboard() {
       } else {
         theDisplay.textContent = `${(operate(firstNum, secondNum, operation)).toPrecision(2)}`;
       }
-      clearOnNextNum = true;
       equalPressed = true;
+      operation = "";
     }
   }
 
