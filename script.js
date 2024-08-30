@@ -134,10 +134,6 @@ var operatorPressedOnce = false;
 const allOperatorButtons = document.querySelectorAll(".operatorButton");
 allOperatorButtons.forEach((button) => {
   button.addEventListener("click", () => {
-    // Ensure that nothing happens if there's nothing in display
-    if (theDisplay.textContent != "") {
-      clearOnNextNum = true;
-      // equalPressed = false;
       // operatorPressedOnce should have returned to false when equals was pressed, but this will trigger if we're doing multi-operative operation
       if (operatorPressedOnce) {
         secondNum = theDisplay.textContent;
@@ -149,12 +145,12 @@ allOperatorButtons.forEach((button) => {
           theDisplay.textContent = `${(operate(firstNum, secondNum, operation)).toPrecision(2)}`;
         }
       }
+      clearOnNextNum = true;
       operatorPressedOnce = true;
       firstNum = theDisplay.textContent;
       operation = `${button.textContent}`
-    }
+    });
   });
-});
 
 // Event Listener that once an equal is pressed, then the store the text content inside the second number and evaluate the two numbers
 const theEqualButton = document.querySelector(".equalButton");
@@ -225,7 +221,7 @@ function numberButtonsAndKeyboard() {
   if (theDisplay.textContent === "0") {
     theDisplay.textContent = "";
   }
-  // This resets everything since equal was pressed, so new calculator operation will be started
+  // This resets everything since equal was pressed and we weren't continuing with a new operation, so new calculator operation will be started
   if (equalPressed && !operatorPressedOnce) {
     firstNum = "";
     secondNum = "";
@@ -254,15 +250,6 @@ function backspaceButtonAndKeyboard() {
 }
 
 function decimalButtonAndKeyboard() {
-  // Reset everything if equal was pressed, starting a new operation and starting it with a decimal
-  if (equalPressed) {
-    firstNum = "";
-    secondNum = "";
-    operation = "";
-    theDisplay.textContent = "0.";
-    clearOnNextNum = false;
-    equalPressed = false;
-  };
   if (clearOnNextNum) {
     theDisplay.textContent = "0.";
     clearOnNextNum = false;
@@ -275,8 +262,7 @@ function decimalButtonAndKeyboard() {
 
 function equalButtonAndKeyboard() {
   // As long as we have an operation and a number, we have the display be second number and we execute an operation
-  if (!equalPressed) {
-    if (firstNum != "" && operation != "") {
+  if (firstNum != "" && operation != "") {
       operatorPressedOnce = false;
       secondNum = theDisplay.textContent;
       firstNum = Number(`${firstNum}`);
@@ -286,11 +272,10 @@ function equalButtonAndKeyboard() {
       } else {
         theDisplay.textContent = `${(operate(firstNum, secondNum, operation)).toPrecision(2)}`;
       }
-        clearOnNextNum = true;
+      clearOnNextNum = true;
       equalPressed = true;
     }
   }
-}
 
 // Event Listener for all operator buttons that if it is actively clicked, then have hover background, if not, then return to yellowgreen background
 const allButtons = document.querySelectorAll("button");
