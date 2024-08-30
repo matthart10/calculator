@@ -272,6 +272,7 @@ function equalButtonAndKeyboard() {
         theDisplay.textContent = `${(operate(firstNum, secondNum, operation)).toPrecision(2)}`;
       }
       equalPressed = true;
+      clearOnNextNum = true;
       operation = "";
     }
   }
