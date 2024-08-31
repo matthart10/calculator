@@ -58,21 +58,27 @@
     flex-direction: column;
     flex-basis: 25%
 }
+
 .numberButton {
     background-color: rgb(204, 160, 77);
 }
+
 .decimalButton {
     background-color: rgb(204, 160, 77);
 }
+
 .operatorButton {
     background-color: rgb(64, 184, 64);
 }
+
 .equalButton {
     background-color: rgb(64, 184, 64);
 }
+
 .miscButton {
     background-color: rgb(201, 77, 201);
 }
+
 button, input[type="submit"], input[type="reset"] {
 	background: none;
 	color: inherit;
